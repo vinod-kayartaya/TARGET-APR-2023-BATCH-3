@@ -1,0 +1,27 @@
+[TRACE] 2023-05-25 12:41:32,898 main            com.targetindia.programs.PrintPower [  24] this is a trace message
+[DEBUG] 2023-05-25 12:41:32,899 main            com.targetindia.programs.PrintPower [  25] this is a debug message
+[ INFO] 2023-05-25 12:41:32,900 main            com.targetindia.programs.PrintPower [  26] this is an info message
+[ WARN] 2023-05-25 12:41:32,900 main            com.targetindia.programs.PrintPower [  27] this is a warn message
+[ERROR] 2023-05-25 12:41:32,900 main            com.targetindia.programs.PrintPower [  28] this is an error message
+[TRACE] 2023-05-25 12:41:46,619 main            com.targetindia.programs.PrintPower [  24] this is a trace message
+[DEBUG] 2023-05-25 12:41:46,621 main            com.targetindia.programs.PrintPower [  25] this is a debug message
+[ INFO] 2023-05-25 12:41:46,621 main            com.targetindia.programs.PrintPower [  26] this is an info message
+[ WARN] 2023-05-25 12:41:46,621 main            com.targetindia.programs.PrintPower [  27] this is a warn message
+[ERROR] 2023-05-25 12:41:46,621 main            com.targetindia.programs.PrintPower [  28] this is an error message
+[TRACE] 2023-05-25 12:45:09,181 main            com.targetindia.programs.PrintPower [  24] user input for a is 2
+[TRACE] 2023-05-25 12:45:09,183 main            com.targetindia.programs.PrintPower [  25] user input for b is 10
+[ INFO] 2023-05-25 12:45:09,184 main            com.targetindia.programs.PrintPower [  31] {0} raised to the power of {1} is {2}. In other words {0}^{1}={2}
+[TRACE] 2023-05-25 12:45:44,390 main            com.targetindia.programs.PrintPower [  24] user input for a is 10
+[TRACE] 2023-05-25 12:45:44,392 main            com.targetindia.programs.PrintPower [  25] user input for b is 20
+[ INFO] 2023-05-25 12:45:44,393 main            com.targetindia.programs.PrintPower [  31] 10 raised to the power of 20 is 7766279631452241920
+[ INFO] 2023-05-25 12:46:01,572 main            com.targetindia.programs.PrintPower [  31] 2 raised to the power of 20 is 1048576
+[ INFO] 2023-05-25 12:47:36,830 main            xyz [  31] 10 raised to the power of 5 is 100000
+[ INFO] 2023-05-25 12:48:06,828 main            xyz com.targetindia.programs.PrintPower [  31] 3 raised to the power of 3 is 27
+[TRACE] 2023-05-25 12:57:05,438 main            com.targetindia.programs.DateInputDemo com.targetindia.programs.DateInputDemo [  16] dob = Sun Jan 20 00:00:00 IST 1974
+[TRACE] 2023-05-25 12:57:26,508 main            com.targetindia.programs.DateInputDemo com.targetindia.programs.DateInputDemo [  27] dt = Thu May 25 12:57:26 IST 2023
+[TRACE] 2023-05-25 12:57:26,536 main            com.targetindia.programs.DateInputDemo com.targetindia.programs.DateInputDemo [  30] dt = 25/05/23, 12:57 pm
+[TRACE] 2023-05-25 12:57:26,536 main            com.targetindia.programs.DateInputDemo com.targetindia.programs.DateInputDemo [  33] dt = 2023-05-25
+[TRACE] 2023-05-25 12:57:26,537 main            com.targetindia.programs.DateInputDemo com.targetindia.programs.DateInputDemo [  36] dt =2023-05-25 12:57:26 pm
+[TRACE] 2023-05-25 12:57:26,538 main            com.targetindia.programs.DateInputDemo com.targetindia.programs.DateInputDemo [  39] dt = Thu May 25, 2023
+[TRACE] 2023-05-25 12:57:26,542 main            com.targetindia.programs.DateInputDemo com.targetindia.programs.DateInputDemo [  42] dt = Thursday May 25, 2023 12:57:26 pm (IST)
+[TRACE] 2023-05-25 12:57:26,543 main            com.targetindia.programs.DateInputDemo com.targetindia.programs.DateInputDemo [  48] Sun Jan 20 00:00:00 IST 1974
