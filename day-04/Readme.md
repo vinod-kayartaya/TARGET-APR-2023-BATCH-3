@@ -43,4 +43,41 @@ value of i is 3
 value of i is 4
 ```
 
-## Loggin in Java
+## Logging in Java
+
+- recording of information during the execution of an application
+  - intermediary values of variables
+  - debug messages
+  - information about the client (browser agent, location, timezone, etc.)
+- these can be of great use for analytical purposes
+  - which is what is done using big data processing (read about Hadoop)
+
+### different APIs for Java
+
+1. log4j
+1. logback
+1. java util logging (JUL) (only in JDK 1.4+)
+
+We can use a common API called SLF4J (Simple Logging Facade for Java), that can make use of the above logging API. This API provides methods to log, but the actual logging is done by the underlying logging API (such as log4j)
+
+Most of the logging APIs provide different log levels, which indicate the severity of the messages being logged.
+
+SLF4j provides a common interface for these levels and maps them to the underlying implementation's log levels.
+
+- TRACE
+  - most detailed log level. used for very fine grained messages.
+  - method entry/exit, variable values, loop progress, copying values from one variable to another
+  - mostly used for debug during development
+- DEBUG
+  - additional details about application's internal workings
+  - state changes, information useful for diagnosing issues during development and troubleshooting
+- INFO
+  - informational messages
+  - may highlight the progress or major milestones of applications
+  - may be used for communicating important events during the execution of the program to the administrators or users
+- WARN
+  - some potential problems, or an unexpected error during the runtime of the application, but non-fatal (mostly handled)
+- ERROR
+  - severe errors that occurred during runtime, but could not be handled
+- OFF
+  - no log messages
