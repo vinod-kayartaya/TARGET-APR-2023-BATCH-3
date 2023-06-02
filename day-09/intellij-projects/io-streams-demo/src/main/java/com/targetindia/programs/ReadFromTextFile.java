@@ -31,6 +31,8 @@ public class ReadFromTextFile {
             byte[] bytes = new byte[1024];
             int loopCount = 0;
             while (file.read(bytes) != -1) {
+                // -1 in binary is 11111111 11111111 11111111 11111111
+                // 255 in binary is 00000000 00000000 00000000 11111111
                 System.out.print(new String(bytes).trim());
                 bytes = new byte[1024];
                 loopCount++;

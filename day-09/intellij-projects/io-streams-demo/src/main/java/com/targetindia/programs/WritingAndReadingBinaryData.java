@@ -39,7 +39,7 @@ public class WritingAndReadingBinaryData {
 
     static void demo3() throws Exception {
         try (
-                FileOutputStream file = new FileOutputStream(filename);
+                FileOutputStream file = new FileOutputStream(filename, true);
                 DataOutputStream out = new DataOutputStream(file);
         ) {
             while (true) {
