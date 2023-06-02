@@ -21,21 +21,21 @@ public class AcceptAndWriteEmployeeDetailsToFile {
                 out.writeObject(emp);
 
                 String ans = KeyboardUtil.getString("Do you want to add another (yes/no): [yes] ");
-                if(ans.equalsIgnoreCase("no")){
+                if (ans.equalsIgnoreCase("no")) {
                     break;
                 }
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     private static Employee acceptEmployeeDetails() {
         System.out.println("Enter employee details");
-        int id = KeyboardUtil.getInt("ID       : ");
-        String name = KeyboardUtil.getString("Name     : ");
-        double salary = KeyboardUtil.getDouble("Salary   : ");
-        return new Employee(id, name, salary);
+        int id = KeyboardUtil.getInt("ID        : ");
+        String name = KeyboardUtil.getString("Name      : ");
+        double salary = KeyboardUtil.getDouble("Salary    : ");
+        String department = KeyboardUtil.getString("Department: ");
+        return new Employee(id, name, salary, department);
     }
 }

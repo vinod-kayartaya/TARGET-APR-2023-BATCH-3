@@ -1,0 +1,10 @@
+[TRACE] 2023-06-02 12:38:18,894 main            com.targetindia.Main [  47] error while accepting menu choice
+java.util.InputMismatchException
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at com.targetindia.utils.KeyboardUtil.getInt(KeyboardUtil.java:18)
+	at com.targetindia.Main.menu(Main.java:45)
+	at com.targetindia.Main.start(Main.java:17)
+	at com.targetindia.Main.main(Main.java:11)
