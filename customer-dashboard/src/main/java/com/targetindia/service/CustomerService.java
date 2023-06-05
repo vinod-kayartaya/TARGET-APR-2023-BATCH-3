@@ -6,6 +6,8 @@ import com.targetindia.dao.DaoException;
 import com.targetindia.model.Customer;
 
 public class CustomerService {
+    // following is an illustration of TIGHT-COUPLING, which is not a good practice
+    // Need to change the same to LOOSE-COUPLING, using factory-method design pattern
     private CustomerDao dao = new CsvCustomerDao(); // interface variable; need an object of an implementing class
 
     public Customer getCustomer(int id) throws ServiceException {
