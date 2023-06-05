@@ -24,11 +24,16 @@ public class KeyboardUtil {
         return sc.nextLine();
     }
 
-    public static Date getDate(String message) throws ParseException {
+    public static Date getDate(String message)  {
         System.out.printf("%s(dd/mm/yyyy format) ", message);
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.parse(input);
+        try {
+            return sdf.parse(input);
+        } catch (ParseException e) {
+            System.out.println("Date was not in the requested format. Using null instead.");
+            return null;
+        }
     }
 }

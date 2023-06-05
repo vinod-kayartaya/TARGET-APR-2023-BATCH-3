@@ -8,3 +8,91 @@ java.util.InputMismatchException
 	at com.targetindia.Main.menu(Main.java:45)
 	at com.targetindia.Main.start(Main.java:17)
 	at com.targetindia.Main.main(Main.java:11)
+[TRACE] 2023-06-02 14:20:49,847 main            com.targetindia.Main [  47] error while accepting menu choice
+java.util.InputMismatchException
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at com.targetindia.utils.KeyboardUtil.getInt(KeyboardUtil.java:18)
+	at com.targetindia.Main.menu(Main.java:45)
+	at com.targetindia.Main.start(Main.java:17)
+	at com.targetindia.Main.main(Main.java:11)
+[TRACE] 2023-06-02 14:25:35,486 main            com.targetindia.Main [  47] error while accepting menu choice
+java.util.InputMismatchException
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at com.targetindia.utils.KeyboardUtil.getInt(KeyboardUtil.java:18)
+	at com.targetindia.Main.menu(Main.java:45)
+	at com.targetindia.Main.start(Main.java:17)
+	at com.targetindia.Main.main(Main.java:11)
+[TRACE] 2023-06-05 10:13:56,508 main            com.targetindia.Main [  47] error while accepting menu choice
+java.util.InputMismatchException
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at com.targetindia.utils.KeyboardUtil.getInt(KeyboardUtil.java:18)
+	at com.targetindia.Main.menu(Main.java:45)
+	at com.targetindia.Main.start(Main.java:17)
+	at com.targetindia.Main.main(Main.java:11)
+[ WARN] 2023-06-05 10:47:43,538 main            com.targetindia.Main [  62] Error while trying find customer by id
+com.targetindia.service.ServiceException: com.targetindia.dao.DaoException: method not ready yet!
+	at com.targetindia.service.CustomerService.getCustomer(CustomerService.java:15)
+	at com.targetindia.Main.acceptIdAndDisplayCustomer(Main.java:47)
+	at com.targetindia.Main.start(Main.java:27)
+	at com.targetindia.Main.main(Main.java:16)
+Caused by: com.targetindia.dao.DaoException: method not ready yet!
+	at com.targetindia.dao.CsvCustomerDao.findById(CsvCustomerDao.java:13)
+	at com.targetindia.service.CustomerService.getCustomer(CustomerService.java:13)
+	... 3 more
+[ WARN] 2023-06-05 11:01:22,780 main            com.targetindia.Main [  62] Error while trying find customer by id
+com.targetindia.service.ServiceException: com.targetindia.dao.DaoException: java.lang.ArrayIndexOutOfBoundsException: Index 6 out of bounds for length 6
+	at com.targetindia.service.CustomerService.getCustomer(CustomerService.java:15)
+	at com.targetindia.Main.acceptIdAndDisplayCustomer(Main.java:47)
+	at com.targetindia.Main.start(Main.java:27)
+	at com.targetindia.Main.main(Main.java:16)
+Caused by: com.targetindia.dao.DaoException: java.lang.ArrayIndexOutOfBoundsException: Index 6 out of bounds for length 6
+	at com.targetindia.dao.CsvCustomerDao.findById(CsvCustomerDao.java:43)
+	at com.targetindia.service.CustomerService.getCustomer(CustomerService.java:13)
+	... 3 more
+Caused by: java.lang.ArrayIndexOutOfBoundsException: Index 6 out of bounds for length 6
+	at com.targetindia.dao.CsvCustomerDao.findById(CsvCustomerDao.java:37)
+	... 4 more
+[ WARN] 2023-06-05 11:28:16,935 main            com.targetindia.Main [  69] Error while adding a new customer
+com.targetindia.service.ServiceException: com.targetindia.dao.DaoException: java.io.FileNotFoundException: customers.csv.csv (No such file or directory)
+	at com.targetindia.service.CustomerService.addCustomer(CustomerService.java:41)
+	at com.targetindia.Main.acceptAndSaveCustomerData(Main.java:66)
+	at com.targetindia.Main.start(Main.java:32)
+	at com.targetindia.Main.main(Main.java:18)
+Caused by: com.targetindia.dao.DaoException: java.io.FileNotFoundException: customers.csv.csv (No such file or directory)
+	at com.targetindia.dao.CsvCustomerDao.addCustomer(CsvCustomerDao.java:22)
+	at com.targetindia.service.CustomerService.addCustomer(CustomerService.java:38)
+	... 3 more
+Caused by: java.io.FileNotFoundException: customers.csv.csv (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:216)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:111)
+	at com.targetindia.dao.CsvCustomerDao.addCustomer(CsvCustomerDao.java:15)
+	... 4 more
+[ WARN] 2023-06-05 11:28:23,901 main            com.targetindia.Main [  91] Error while trying find customer by id
+com.targetindia.service.ServiceException: com.targetindia.dao.DaoException: java.io.FileNotFoundException: customers.csv.csv (No such file or directory)
+	at com.targetindia.service.CustomerService.getCustomer(CustomerService.java:15)
+	at com.targetindia.Main.acceptIdAndDisplayCustomer(Main.java:77)
+	at com.targetindia.Main.start(Main.java:29)
+	at com.targetindia.Main.main(Main.java:18)
+Caused by: com.targetindia.dao.DaoException: java.io.FileNotFoundException: customers.csv.csv (No such file or directory)
+	at com.targetindia.dao.CsvCustomerDao.findById(CsvCustomerDao.java:64)
+	at com.targetindia.service.CustomerService.getCustomer(CustomerService.java:13)
+	... 3 more
+Caused by: java.io.FileNotFoundException: customers.csv.csv (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:216)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:111)
+	at java.base/java.io.FileReader.<init>(FileReader.java:60)
+	at com.targetindia.dao.CsvCustomerDao.findById(CsvCustomerDao.java:41)
+	... 4 more
