@@ -42,3 +42,21 @@ Caused by: com.targetindia.dao.DaoException: 1. First name cannot be null or bla
 	at com.targetindia.dao.ArrayListCustomerDao.addCustomer(ArrayListCustomerDao.java:74)
 	at com.targetindia.service.CustomerService.addCustomer(CustomerService.java:40)
 	... 3 more
+[ WARN] 2023-06-07 12:39:46,233 main            com.targetindia.Main [ 127] Error while adding a new customer
+com.targetindia.service.ServiceException: 1. Firstname is required, but missing
+2. Email address is required, but missing
+3. Phone number is required, but missing
+	at com.targetindia.service.ServiceException.fromList(ServiceException.java:21)
+	at com.targetindia.service.CustomerService.addCustomer(CustomerService.java:52)
+	at com.targetindia.Main.acceptAndSaveCustomerData(Main.java:124)
+	at com.targetindia.Main.start(Main.java:33)
+	at com.targetindia.Main.main(Main.java:19)
+[ WARN] 2023-06-07 12:40:06,159 main            com.targetindia.Main [ 127] Error while adding a new customer
+com.targetindia.service.ServiceException: 1. Firstname is required, but missing
+2. Email is already present in our database
+3. Phone number is already present in our database
+	at com.targetindia.service.ServiceException.fromList(ServiceException.java:21)
+	at com.targetindia.service.CustomerService.addCustomer(CustomerService.java:52)
+	at com.targetindia.Main.acceptAndSaveCustomerData(Main.java:124)
+	at com.targetindia.Main.start(Main.java:33)
+	at com.targetindia.Main.main(Main.java:19)

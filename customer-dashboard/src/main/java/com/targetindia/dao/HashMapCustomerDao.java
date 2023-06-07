@@ -4,22 +4,23 @@ import com.targetindia.model.Customer;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class ArrayListCustomerDao implements CustomerDao {
+public class HashMapCustomerDao implements CustomerDao {
 
-    private List<Customer> list = new ArrayList<>();
-    private static final String FILE_NAME = "customers.dat";
+    private Map<Integer, Customer> customerMap = new HashMap<>();
+    private static final String FILE_NAME = "customers.map";
 
-    public ArrayListCustomerDao() throws DaoException {
-        // deserialize the content of customers.dat (if exists) into the list
+    public HashMapCustomerDao() {
         File file = new File(FILE_NAME);
         if (file.exists() && file.isFile()) {
             try (
                     FileInputStream f = new FileInputStream(file);
                     ObjectInputStream in = new ObjectInputStream(f);
             ) {
-                this.list = (List<Customer>) in.readObject();
+                this.customerMap = (Map<Integer, Customer>) in.readObject();
             } catch (Exception e) {
                 throw new DaoException(e);
             }
@@ -31,7 +32,7 @@ public class ArrayListCustomerDao implements CustomerDao {
                 FileOutputStream f = new FileOutputStream(FILE_NAME);
                 ObjectOutputStream out = new ObjectOutputStream(f);
         ) {
-            out.writeObject(list);
+            out.writeObject(customerMap);
         } catch (Exception e) {
             throw new DaoException(e);
         }
@@ -39,66 +40,52 @@ public class ArrayListCustomerDao implements CustomerDao {
 
     @Override
     public void addCustomer(Customer c) throws DaoException {
-        // after adding this customer to the list, call the persist() method
-        // generate id only if there are no errors
+        // need to generate the id
         int id = 0;
-        for (Customer c2 : list) {
+        for (Customer c2 : customerMap.values()) {
             if (c2.getId() > id) {
                 id = c2.getId();
             }
         }
         c.setId(id + 1);
-        list.add(c);
+        customerMap.put(c.getId(), c);
         persist();
     }
 
     @Override
     public Customer findById(int id) throws DaoException {
-        for (Customer c : list) {
-            if (c.getId() == id) {
-                return c;
-            }
-        }
-        return null;
+        return customerMap.get(id);
     }
 
     @Override
     public void updateCustomer(Customer customer) throws DaoException {
-        // after updating this customer in the list, call the persist() method
-        for (int index = 0; index < list.size(); index++) {
-            Customer c = list.get(index);
-            if (c.getId() == customer.getId()) {
-                list.set(index, customer);
-                persist();
-                return;
-            }
+        if (customerMap.containsKey(customer.getId())) {
+            customerMap.put(customer.getId(), customer);
+            persist();
+        } else {
+            throw new DaoException("Customer id not found to update");
         }
-        throw new DaoException("Invalid customer id");
     }
 
     @Override
     public void deleteCustomer(int id) throws DaoException {
-        // after deleting this customer from the list, call the persist() method
-        for (int index = 0; index < list.size(); index++) {
-            Customer c = list.get(index);
-            if (c.getId() == id) {
-                list.remove(index);
-                persist();
-                return;
-            }
+        if (customerMap.containsKey(id)) {
+            customerMap.remove(id);
+            persist();
+        } else {
+            throw new DaoException("Customer id not found to delete");
         }
-        throw new DaoException("Invalid customer id");
     }
 
     @Override
     public List<Customer> getAllCustomers() throws DaoException {
-        return list;
+        return new ArrayList<>(customerMap.values());
     }
 
     @Override
     public List<Customer> getCustomersByCity(String city) throws DaoException {
         List<Customer> customers = new ArrayList<>();
-        for (Customer c : list) {
+        for (Customer c : customerMap.values()) {
             if (c.getCity().equalsIgnoreCase(city)) {
                 customers.add(c);
             }
@@ -108,7 +95,7 @@ public class ArrayListCustomerDao implements CustomerDao {
 
     @Override
     public Customer getCustomerByEmailOrPhone(String emailOrPhone) throws DaoException {
-        for (Customer c : list) {
+        for (Customer c : customerMap.values()) {
             if (c.getEmail().equalsIgnoreCase(emailOrPhone) || c.getPhone().equals(emailOrPhone)) {
                 return c;
             }
@@ -118,6 +105,6 @@ public class ArrayListCustomerDao implements CustomerDao {
 
     @Override
     public List<Customer> getCustomersByAge(int minAge, int maxAge) throws DaoException {
-        throw new DaoException("method not ready yet!");
+        throw new DaoException("Method not ready yet!");
     }
 }

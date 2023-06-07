@@ -7,6 +7,9 @@ import java.util.Date;
 public class DateUtil {
     private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     public static String toString(Date dt){
+        if(dt==null){
+            return "";
+        }
         return sdf.format(dt);
     }
 
