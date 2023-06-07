@@ -68,6 +68,7 @@ public class Main {
         }catch (ServiceException e){
             log.warn("Error while adding a new customer", e);
             System.out.println("Something went wrong. Check the logs for more details.");
+            System.out.println(e.getMessage());
         }
     }
 

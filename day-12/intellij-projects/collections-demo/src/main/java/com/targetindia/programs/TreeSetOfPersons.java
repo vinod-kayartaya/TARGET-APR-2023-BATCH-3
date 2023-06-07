@@ -8,16 +8,18 @@ import java.util.TreeSet;
 
 public class TreeSetOfPersons {
 
-    static class PersonAgeComparator implements Comparator<Person>{
+    static class PersonAgeComparator implements Comparator<Person> {
         @Override
         public int compare(Person p1, Person p2) {
-            int result =  p1.getAge() - p2.getAge();
-            if(result!=0) return result;
+            // System.out.printf("comparing %s with %s%n", p1, p2);
+            int result = Double.compare(p2.getHeight(), p1.getHeight());
+            if (result != 0) return result;
+
+            result = p2.getAge() - p1.getAge();
+            if (result != 0) return result;
 
             result = p1.getName().compareTo(p2.getName());
-            if(result!=0) return result;
-
-            return Double.compare(p1.getHeight(),p2.getHeight());
+            return result;
         }
     }
 
@@ -29,7 +31,7 @@ public class TreeSetOfPersons {
         Set<Person> persons = new TreeSet<>(cmp);
         // Person is not Comparable, but it is okay, since the TreeSet has cmp, which knows
         // how to compare two Person objects
-        persons.add(new Person("Ezri Haith", 34, 5.9));
+        persons.add(new Person("Ezri Haith", 36, 5.9));
         persons.add(new Person("Serena Fritz", 36, 5.9));
         persons.add(new Person("Nikki Seleway", 34, 6.9));
         persons.add(new Person("Frannie Hellwing", 34, 6.8));
@@ -48,10 +50,9 @@ public class TreeSetOfPersons {
         persons.add(new Person("Frannie Hellwing", 34, 6.8));
         persons.add(new Person("Jackie Hands", 55, 6.5));
 
-        for(Person p: persons){
+        for (Person p : persons) {
             System.out.println(p);
         }
-
 
 
     }

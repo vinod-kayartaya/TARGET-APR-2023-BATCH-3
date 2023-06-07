@@ -4,6 +4,7 @@ import com.targetindia.model.Customer;
 import com.targetindia.utils.DateUtil;
 
 import java.io.*;
+import java.util.List;
 
 public class CsvCustomerDao implements CustomerDao {
     private static final String filename = "customers.csv";
@@ -73,6 +74,26 @@ public class CsvCustomerDao implements CustomerDao {
 
     @Override
     public void deleteCustomer(int id) throws DaoException {
+        throw new DaoException("method not ready yet!");
+    }
+
+    @Override
+    public List<Customer> getAllCustomers() throws DaoException {
+        throw new DaoException("method not ready yet!");
+    }
+
+    @Override
+    public List<Customer> getCustomersByCity(String city) throws DaoException {
+        throw new DaoException("method not ready yet!");
+    }
+
+    @Override
+    public Customer getCustomerByEmailOrPhone(String emailOrPhone) throws DaoException {
+        throw new DaoException("method not ready yet!");
+    }
+
+    @Override
+    public List<Customer> getCustomersByAge(int minAge, int maxAge) throws DaoException {
         throw new DaoException("method not ready yet!");
     }
 }
