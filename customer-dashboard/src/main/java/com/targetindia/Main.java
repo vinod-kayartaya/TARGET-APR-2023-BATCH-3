@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.security.Key;
 import java.util.Date;
 import java.util.InputMismatchException;
+import java.util.List;
 
 @Slf4j
 public class Main {
@@ -32,8 +33,14 @@ public class Main {
                     acceptAndSaveCustomerData();
                     break;
                 case 1:
+                    showAllCustomers();
+                    break;
                 case 3:
+                    acceptCityAndShowCustomers();
+                    break;
                 case 4:
+                    acceptEmailOrPhoneAndDisplayCustomer();
+                    break;
                 case 6:
                 case 7:
                     System.out.println("This feature is under development");
@@ -43,6 +50,57 @@ public class Main {
             }
         }
         System.out.println("Thank you and have a nice day!");
+    }
+
+    private void acceptEmailOrPhoneAndDisplayCustomer() {
+        String emailOrPhone = KeyboardUtil.getString("Enter email/phone to search: ");
+        Customer c = service.getCustomerByEmailOrPhone(emailOrPhone);
+        if (c == null) {
+            System.out.printf("No customer data found for email or phone %s%n", emailOrPhone);
+            return;
+        }
+        displayOneCustomer(c);
+    }
+
+    private void acceptCityAndShowCustomers() {
+        String city = KeyboardUtil.getString("Enter city to search customers from: ");
+        List<Customer> customers = service.getCustomersFromCity(city);
+
+        printCustomerList(customers);
+    }
+
+    private void printCustomerList(List<Customer> customers) {
+        if(customers==null || customers.isEmpty()){
+            System.out.println("No customers to show");
+            return;
+        }
+
+        line('-', 103);
+        System.out.printf("%3s %-25s %-25s %-10s %-25s %-10s%n",
+                "ID", "Name", "Email", "Phone", "City", "Birthday");
+        line('-', 103);
+        for(Customer c: customers){
+            System.out.printf("%3s %-25s %-25s %-10s %-25s %-10s%n",
+                    c.getId(),
+                    c.getFirstname()+" "+c.getLastname(),
+                    c.getEmail(),
+                    c.getPhone(),
+                    c.getCity(),
+                    DateUtil.toString(c.getBirthDate()));
+        }
+        line('-', 103);
+    }
+
+    private void showAllCustomers() {
+        List<Customer> customers = service.getAllCustomers();
+        printCustomerList(customers);
+    }
+
+    private void line(char pattern, int len) {
+        for(int i=0; i<len; i++){
+            System.out.print(pattern);
+        }
+        System.out.println();
     }
 
     private void acceptAndSaveCustomerData() {
@@ -80,14 +138,7 @@ public class Main {
                 System.out.printf("No customer data found for id %d%n", id);
                 return;
             }
-
-            System.out.printf("Customer data for id %d: %n", id);
-            System.out.printf("Name           : %s %s%n", c.getFirstname(), c.getLastname());
-            System.out.printf("Email address  : %s%n", c.getEmail());
-            System.out.printf("Phone number   : %s%n", c.getPhone());
-            System.out.printf("City           : %s%n", c.getCity());
-            System.out.printf("Date of birth  : %s%n", DateUtil.toString(c.getBirthDate()));
-            System.out.println();
+            displayOneCustomer(c);
         } catch (ServiceException e) {
             log.warn("Error while trying find customer by id", e);
             System.out.println("Something went wrong. Check the logs for more details.");
@@ -96,13 +147,23 @@ public class Main {
         }
     }
 
+    private static void displayOneCustomer(Customer c) {
+        System.out.printf("Customer data for id %d: %n", c.getId());
+        System.out.printf("Name           : %s %s%n", c.getFirstname(), c.getLastname());
+        System.out.printf("Email address  : %s%n", c.getEmail());
+        System.out.printf("Phone number   : %s%n", c.getPhone());
+        System.out.printf("City           : %s%n", c.getCity());
+        System.out.printf("Date of birth  : %s%n", DateUtil.toString(c.getBirthDate()));
+        System.out.println();
+    }
+
     private int menu() {
         System.out.println("Main menu");
         System.out.println();
         System.out.println("0. Exit");
-        System.out.println("1. List all customers.csv");
+        System.out.println("1. List all customers");
         System.out.println("2. Search customer by id");
-        System.out.println("3. Search customers.csv by city");
+        System.out.println("3. Search customers by city");
         System.out.println("4. Search customer by email/phone");
         System.out.println("5. Add new customer record");
         System.out.println("6. Modify customer data");
