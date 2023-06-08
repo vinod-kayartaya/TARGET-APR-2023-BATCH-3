@@ -36,4 +36,10 @@ public class KeyboardUtil {
             return null;
         }
     }
+
+    public static long getLong(String message) {
+        System.out.print(message);
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLong();
+    }
 }

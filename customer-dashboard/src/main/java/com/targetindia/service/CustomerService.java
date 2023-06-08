@@ -2,6 +2,7 @@ package com.targetindia.service;
 
 import com.targetindia.dao.CustomerDao;
 import com.targetindia.dao.DaoException;
+import com.targetindia.dao.DaoFactory;
 import com.targetindia.dao.HashMapCustomerDao;
 import com.targetindia.model.Customer;
 
@@ -11,9 +12,12 @@ import java.util.List;
 public class CustomerService {
     // following is an illustration of TIGHT-COUPLING, which is not a good practice
     // Need to change the same to LOOSE-COUPLING, using factory-method design pattern
-    private CustomerDao dao = new HashMapCustomerDao(); // interface variable; need an object of an implementing class
+    // private CustomerDao dao = new HashMapCustomerDao(); // interface variable; need an object of an implementing class
 
-    public Customer getCustomer(int id) throws ServiceException {
+    // loose coupling
+    private CustomerDao dao = DaoFactory.getCustomerDao();
+
+    public Customer getCustomer(long id) throws ServiceException {
         try {
             return dao.findById(id);
         } catch (NullPointerException | DaoException e) {

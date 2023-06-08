@@ -75,12 +75,12 @@ public class Main {
             return;
         }
 
-        line('-', 103);
-        System.out.printf("%3s %-25s %-25s %-10s %-25s %-10s%n",
+        line('-', 116);
+        System.out.printf("%16s %-25s %-25s %-10s %-25s %-10s%n",
                 "ID", "Name", "Email", "Phone", "City", "Birthday");
-        line('-', 103);
+        line('-', 116);
         for(Customer c: customers){
-            System.out.printf("%3s %-25s %-25s %-10s %-25s %-10s%n",
+            System.out.printf("%16s %-25s %-25s %-10s %-25s %-10s%n",
                     c.getId(),
                     c.getFirstname()+" "+c.getLastname(),
                     c.getEmail(),
@@ -88,7 +88,7 @@ public class Main {
                     c.getCity(),
                     DateUtil.toString(c.getBirthDate()));
         }
-        line('-', 103);
+        line('-', 116);
     }
 
     private void showAllCustomers() {
@@ -132,7 +132,7 @@ public class Main {
 
     private void acceptIdAndDisplayCustomer() {
         try {
-            int id = KeyboardUtil.getInt("Enter customer id to search: ");
+            long id = KeyboardUtil.getLong("Enter customer id to search: ");
             Customer c = service.getCustomer(id);
             if (c == null) {
                 System.out.printf("No customer data found for id %d%n", id);

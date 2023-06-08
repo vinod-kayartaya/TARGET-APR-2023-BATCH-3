@@ -5,6 +5,7 @@ import com.targetindia.model.Customer;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ArrayListCustomerDao implements CustomerDao {
 
@@ -17,7 +18,7 @@ public class ArrayListCustomerDao implements CustomerDao {
         if (file.exists() && file.isFile()) {
             try (
                     FileInputStream f = new FileInputStream(file);
-                    ObjectInputStream in = new ObjectInputStream(f);
+                    ObjectInputStream in = new ObjectInputStream(f)
             ) {
                 this.list = (List<Customer>) in.readObject();
             } catch (Exception e) {
@@ -29,7 +30,7 @@ public class ArrayListCustomerDao implements CustomerDao {
     private void persist() throws DaoException {
         try (
                 FileOutputStream f = new FileOutputStream(FILE_NAME);
-                ObjectOutputStream out = new ObjectOutputStream(f);
+                ObjectOutputStream out = new ObjectOutputStream(f)
         ) {
             out.writeObject(list);
         } catch (Exception e) {
@@ -41,19 +42,14 @@ public class ArrayListCustomerDao implements CustomerDao {
     public void addCustomer(Customer c) throws DaoException {
         // after adding this customer to the list, call the persist() method
         // generate id only if there are no errors
-        int id = 0;
-        for (Customer c2 : list) {
-            if (c2.getId() > id) {
-                id = c2.getId();
-            }
-        }
-        c.setId(id + 1);
+        Random r = new Random(1000);
+        c.setId(System.currentTimeMillis() + r.nextInt());
         list.add(c);
         persist();
     }
 
     @Override
-    public Customer findById(int id) throws DaoException {
+    public Customer findById(long id) throws DaoException {
         for (Customer c : list) {
             if (c.getId() == id) {
                 return c;
@@ -77,7 +73,7 @@ public class ArrayListCustomerDao implements CustomerDao {
     }
 
     @Override
-    public void deleteCustomer(int id) throws DaoException {
+    public void deleteCustomer(long id) throws DaoException {
         // after deleting this customer from the list, call the persist() method
         for (int index = 0; index < list.size(); index++) {
             Customer c = list.get(index);

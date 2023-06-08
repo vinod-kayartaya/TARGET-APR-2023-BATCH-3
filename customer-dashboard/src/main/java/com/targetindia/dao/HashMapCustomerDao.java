@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class HashMapCustomerDao implements CustomerDao {
 
-    private Map<Integer, Customer> customerMap = new HashMap<>();
+    private Map<Long, Customer> customerMap = new HashMap<>();
     private static final String FILE_NAME = "customers.map";
 
     public HashMapCustomerDao() {
@@ -18,9 +18,9 @@ public class HashMapCustomerDao implements CustomerDao {
         if (file.exists() && file.isFile()) {
             try (
                     FileInputStream f = new FileInputStream(file);
-                    ObjectInputStream in = new ObjectInputStream(f);
+                    ObjectInputStream in = new ObjectInputStream(f)
             ) {
-                this.customerMap = (Map<Integer, Customer>) in.readObject();
+                this.customerMap = (Map<Long, Customer>) in.readObject();
             } catch (Exception e) {
                 throw new DaoException(e);
             }
@@ -30,7 +30,7 @@ public class HashMapCustomerDao implements CustomerDao {
     private void persist() throws DaoException {
         try (
                 FileOutputStream f = new FileOutputStream(FILE_NAME);
-                ObjectOutputStream out = new ObjectOutputStream(f);
+                ObjectOutputStream out = new ObjectOutputStream(f)
         ) {
             out.writeObject(customerMap);
         } catch (Exception e) {
@@ -41,19 +41,13 @@ public class HashMapCustomerDao implements CustomerDao {
     @Override
     public void addCustomer(Customer c) throws DaoException {
         // need to generate the id
-        int id = 0;
-        for (Customer c2 : customerMap.values()) {
-            if (c2.getId() > id) {
-                id = c2.getId();
-            }
-        }
-        c.setId(id + 1);
+        c.setId(System.currentTimeMillis());
         customerMap.put(c.getId(), c);
         persist();
     }
 
     @Override
-    public Customer findById(int id) throws DaoException {
+    public Customer findById(long id) throws DaoException {
         return customerMap.get(id);
     }
 
@@ -68,7 +62,7 @@ public class HashMapCustomerDao implements CustomerDao {
     }
 
     @Override
-    public void deleteCustomer(int id) throws DaoException {
+    public void deleteCustomer(long id) throws DaoException {
         if (customerMap.containsKey(id)) {
             customerMap.remove(id);
             persist();

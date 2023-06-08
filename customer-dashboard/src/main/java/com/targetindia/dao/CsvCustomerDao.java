@@ -37,7 +37,7 @@ public class CsvCustomerDao implements CustomerDao {
     }
 
     @Override
-    public Customer findById(int id) throws DaoException {
+    public Customer findById(long id) throws DaoException {
         try (
                 FileReader reader = new FileReader(filename);
                 BufferedReader in = new BufferedReader(reader);
@@ -73,7 +73,7 @@ public class CsvCustomerDao implements CustomerDao {
     }
 
     @Override
-    public void deleteCustomer(int id) throws DaoException {
+    public void deleteCustomer(long id) throws DaoException {
         throw new DaoException("method not ready yet!");
     }
 

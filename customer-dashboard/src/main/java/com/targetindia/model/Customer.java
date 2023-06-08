@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Data
 public class Customer implements Serializable {
-    private int id;
+    private long id;
     private String firstname;
     private String lastname;
     private String email;
