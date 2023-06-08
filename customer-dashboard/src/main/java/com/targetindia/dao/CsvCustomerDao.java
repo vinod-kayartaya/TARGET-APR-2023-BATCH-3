@@ -4,6 +4,7 @@ import com.targetindia.model.Customer;
 import com.targetindia.utils.DateUtil;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CsvCustomerDao implements CustomerDao {
@@ -79,7 +80,28 @@ public class CsvCustomerDao implements CustomerDao {
 
     @Override
     public List<Customer> getAllCustomers() throws DaoException {
-        throw new DaoException("method not ready yet!");
+        List<Customer> customers = new ArrayList<>();
+        try (
+                FileReader reader = new FileReader(filename);
+                BufferedReader in = new BufferedReader(reader);
+        ) {
+            String line = in.readLine(); // skip the header
+            while ((line = in.readLine()) != null) {
+                String[] fields = line.split(",");
+                Customer c = new Customer();
+                c.setId(Integer.parseInt(fields[0]));
+                c.setFirstname(fields[1]);
+                c.setLastname(fields[2]);
+                c.setEmail(fields[3]);
+                c.setPhone(fields[4]);
+                c.setBirthDate(DateUtil.toDate(fields[5]));
+                c.setCity(fields[6]);
+                customers.add(c);
+            }
+        } catch (Exception e) {
+            throw new DaoException(e);
+        }
+        return customers;
     }
 
     @Override
