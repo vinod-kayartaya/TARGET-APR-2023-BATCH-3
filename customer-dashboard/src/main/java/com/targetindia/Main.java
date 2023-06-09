@@ -41,6 +41,8 @@ public class Main {
                 case 4:
                     acceptEmailOrPhoneAndDisplayCustomer();
                     break;
+                case 8:
+                    acceptAgeGroupAndShowCustomers();
                 case 6:
                 case 7:
                     System.out.println("This feature is under development");
@@ -50,6 +52,17 @@ public class Main {
             }
         }
         System.out.println("Thank you and have a nice day!");
+    }
+
+    private void acceptAgeGroupAndShowCustomers() {
+        try {
+            int minAge = KeyboardUtil.getInt("Enter age from: ");
+            int maxAge = KeyboardUtil.getInt("Enter age to: ");
+            List<Customer> list = service.getCustomersByAge(minAge, maxAge);
+            printCustomerList(list);
+        } catch (ServiceException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void acceptEmailOrPhoneAndDisplayCustomer() {
@@ -70,7 +83,7 @@ public class Main {
     }
 
     private void printCustomerList(List<Customer> customers) {
-        if(customers==null || customers.isEmpty()){
+        if (customers == null || customers.isEmpty()) {
             System.out.println("No customers to show");
             return;
         }
@@ -79,10 +92,10 @@ public class Main {
         System.out.printf("%16s %-25s %-25s %-10s %-25s %-10s%n",
                 "ID", "Name", "Email", "Phone", "City", "Birthday");
         line('-', 116);
-        for(Customer c: customers){
+        for (Customer c : customers) {
             System.out.printf("%16s %-25s %-25s %-10s %-25s %-10s%n",
                     c.getId(),
-                    c.getFirstname()+" "+c.getLastname(),
+                    c.getFirstname() + " " + c.getLastname(),
                     c.getEmail(),
                     c.getPhone(),
                     c.getCity(),
@@ -97,7 +110,7 @@ public class Main {
     }
 
     private void line(char pattern, int len) {
-        for(int i=0; i<len; i++){
+        for (int i = 0; i < len; i++) {
             System.out.print(pattern);
         }
         System.out.println();
@@ -123,7 +136,7 @@ public class Main {
 
             service.addCustomer(c);
             System.out.println("New customer data saved");
-        }catch (ServiceException e){
+        } catch (ServiceException e) {
             log.warn("Error while adding a new customer", e);
             System.out.println("Something went wrong. Check the logs for more details.");
             System.out.println(e.getMessage());
@@ -168,6 +181,7 @@ public class Main {
         System.out.println("5. Add new customer record");
         System.out.println("6. Modify customer data");
         System.out.println("7. Delete customer data");
+        System.out.println("8. Search by age group");
         try {
             return KeyboardUtil.getInt("Enter your choice: ");
         } catch (Exception e) {

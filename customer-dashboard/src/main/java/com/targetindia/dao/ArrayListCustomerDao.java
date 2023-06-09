@@ -3,9 +3,8 @@ package com.targetindia.dao;
 import com.targetindia.model.Customer;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ArrayListCustomerDao implements CustomerDao {
 
@@ -50,12 +49,16 @@ public class ArrayListCustomerDao implements CustomerDao {
 
     @Override
     public Customer findById(long id) throws DaoException {
-        for (Customer c : list) {
-            if (c.getId() == id) {
-                return c;
-            }
-        }
-        return null;
+//        for (Customer c : list) {
+//            if (c.getId() == id) {
+//                return c;
+//            }
+//        }
+//        return null;
+        Optional<Customer> data = list.stream()
+                .filter(c -> c.getId() == id)
+                .findFirst();
+        return data.isPresent() ? data.get() : null;
     }
 
     @Override
@@ -88,32 +91,49 @@ public class ArrayListCustomerDao implements CustomerDao {
 
     @Override
     public List<Customer> getAllCustomers() throws DaoException {
-        return list;
+        return list.stream().collect(Collectors.toUnmodifiableList());
     }
 
     @Override
     public List<Customer> getCustomersByCity(String city) throws DaoException {
-        List<Customer> customers = new ArrayList<>();
-        for (Customer c : list) {
-            if (c.getCity().equalsIgnoreCase(city)) {
-                customers.add(c);
-            }
-        }
-        return customers;
+//        List<Customer> customers = new ArrayList<>();
+//        for (Customer c : list) {
+//            if (c.getCity().equalsIgnoreCase(city)) {
+//                customers.add(c);
+//            }
+//        }
+//        return customers;
+        return list.stream()
+                .filter(c -> c.getCity().equalsIgnoreCase(city))
+                .collect(Collectors.toList());
     }
 
     @Override
     public Customer getCustomerByEmailOrPhone(String emailOrPhone) throws DaoException {
-        for (Customer c : list) {
-            if (c.getEmail().equalsIgnoreCase(emailOrPhone) || c.getPhone().equals(emailOrPhone)) {
-                return c;
-            }
-        }
-        return null;
+//        for (Customer c : list) {
+//            if (c.getEmail().equalsIgnoreCase(emailOrPhone) || c.getPhone().equals(emailOrPhone)) {
+//                return c;
+//            }
+//        }
+//        return null;
+
+        Optional<Customer> data = list.stream()
+                .filter(c -> c.getPhone().equalsIgnoreCase(emailOrPhone) ||
+                        c.getEmail().equalsIgnoreCase(emailOrPhone))
+                .findFirst();
+
+        return data.isEmpty() ? null : data.get();
     }
 
     @Override
     public List<Customer> getCustomersByAge(int minAge, int maxAge) throws DaoException {
-        throw new DaoException("method not ready yet!");
+        return list.stream()
+                .filter(c -> c.getBirthDate() != null)
+                .filter(c -> age(c.getBirthDate()) >= minAge && age(c.getBirthDate()) <= maxAge)
+                .collect(Collectors.toList());
+    }
+
+    private static int age(Date dob) {
+        return new Date(System.currentTimeMillis() - dob.getTime()).getYear() - 70; // 70-->1970
     }
 }

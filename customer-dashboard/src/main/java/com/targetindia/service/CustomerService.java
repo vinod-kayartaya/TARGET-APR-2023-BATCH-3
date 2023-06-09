@@ -8,6 +8,7 @@ import com.targetindia.model.Customer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CustomerService {
     // following is an illustration of TIGHT-COUPLING, which is not a good practice
@@ -70,5 +71,9 @@ public class CustomerService {
 
     public Customer getCustomerByEmailOrPhone(String emailOrPhone) {
         return dao.getCustomerByEmailOrPhone(emailOrPhone);
+    }
+
+    public List<Customer> getCustomersByAge(int minAge, int maxAge) throws DaoException {
+        return dao.getCustomersByAge(minAge, maxAge);
     }
 }
