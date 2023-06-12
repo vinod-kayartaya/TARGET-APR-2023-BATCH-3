@@ -48,3 +48,45 @@ SQLite      --> jdbc:sqlite:targetdb_b3.sqlite
 
 Oracle      --> jdbc:oracle:thin:@localhost:1521:orcl
 ```
+
+### java.sql.Connection
+
+```plantuml
+@startuml
+
+interface java.sql.Connection {
+    + close(): void
+    + isClosed(): boolean
+    + getAutoCommit(): boolean
+    + setAutoCommit(autoCommit: boolean)
+    + commit(): void
+    + rollback(): void
+    + setSavepoint(): Savepoint
+    + setSavepoint(name: String): Savepoint
+    + getSavepoint(name: String): Savepoint
+    + rollback(savepoint: Savepoint)
+    + createStatement(): Statement
+    + prepareStatement(sql: String): PreparedStatement
+    + prepareCall(cmd: String): CallableStatement
+}
+
+interface java.sql.Statement{
+    + close(): void
+    + execute(sql: String): boolean
+    + executeUpdate(sql: String): int
+    + executeQuery(sql: String): ResultSet
+    + getResultSet(): ResultSet
+}
+interface java.sql.PreparedStatement{
+    + close(): void
+    + execute(): boolean
+    + executeUpdate(): int
+    + executeQuery(): ResultSet
+}
+interface java.sql.CallableStatement{}
+
+java.sql.Statement <|-- java.sql.PreparedStatement
+java.sql.PreparedStatement <|-- java.sql.CallableStatement
+
+@enduml
+```
