@@ -8,7 +8,6 @@ import com.targetindia.utils.KeyboardUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.FileInputStream;
-import java.security.Key;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -26,14 +25,11 @@ public class Main {
         int choice;
         while ((choice = menu()) != 0) {
             switch (choice) {
-                case 2:
-                    acceptIdAndDisplayCustomer();
-                    break;
-                case 5:
-                    acceptAndSaveCustomerData();
-                    break;
                 case 1:
                     showAllCustomers();
+                    break;
+                case 2:
+                    acceptIdAndDisplayCustomer();
                     break;
                 case 3:
                     acceptCityAndShowCustomers();
@@ -41,10 +37,16 @@ public class Main {
                 case 4:
                     acceptEmailOrPhoneAndDisplayCustomer();
                     break;
+                case 5:
+                    acceptAndSaveCustomerData();
+                    break;
+                case 7:
+                    acceptIdAndDeleteCustomer();
+                    break;
                 case 8:
                     acceptAgeGroupAndShowCustomers();
+                    break;
                 case 6:
-                case 7:
                     System.out.println("This feature is under development");
                     break;
                 default:
@@ -52,6 +54,28 @@ public class Main {
             }
         }
         System.out.println("Thank you and have a nice day!");
+    }
+
+    private void acceptIdAndDeleteCustomer() {
+        try {
+            long id = KeyboardUtil.getLong("Enter customer id to search: ");
+            Customer c = service.getCustomer(id);
+            if (c == null) {
+                System.out.printf("No customer data found for id %d%n", id);
+                return;
+            }
+            displayOneCustomer(c);
+
+            String confirm = KeyboardUtil.getString("This record will be permanently deleted. Type DELETE to confirm: ");
+            if (confirm.equals("DELETE")) {
+                service.deleteCustomer(id);
+                System.out.println("Customer data deleted successfully!");
+            } else {
+                System.out.println("Delete operation cancelled!");
+            }
+        } catch (ServiceException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void acceptAgeGroupAndShowCustomers() {
@@ -88,12 +112,12 @@ public class Main {
             return;
         }
 
-        line('-', 116);
-        System.out.printf("%16s %-25s %-25s %-10s %-25s %-10s%n",
+        line('-', 126);
+        System.out.printf("%16s %-25s %-35s %-10s %-25s %-10s%n",
                 "ID", "Name", "Email", "Phone", "City", "Birthday");
-        line('-', 116);
+        line('-', 126);
         for (Customer c : customers) {
-            System.out.printf("%16s %-25s %-25s %-10s %-25s %-10s%n",
+            System.out.printf("%16s %-25s %-35s %-10s %-25s %-10s%n",
                     c.getId(),
                     c.getFirstname() + " " + c.getLastname(),
                     c.getEmail(),
@@ -101,7 +125,7 @@ public class Main {
                     c.getCity(),
                     DateUtil.toString(c.getBirthDate()));
         }
-        line('-', 116);
+        line('-', 126);
     }
 
     private void showAllCustomers() {

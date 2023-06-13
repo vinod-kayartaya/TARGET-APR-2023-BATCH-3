@@ -16,6 +16,7 @@ public class SqlInjectionDemo {
         String email = KeyboardUtil.getString("Email    : "); // try with this --> ' or 1 limit 1 --
         String password = KeyboardUtil.getString("Password : "); // anything is okay
         String sql = "select * from users where email='%s' and password='%s'".formatted(email, password);
+        System.out.println(sql);
         try (
                 Connection conn = JdbcUtil.createConnection();
                 Statement stmt = conn.createStatement();

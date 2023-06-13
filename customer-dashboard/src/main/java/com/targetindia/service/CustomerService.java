@@ -61,19 +61,45 @@ public class CustomerService {
         }
     }
 
-    public List<Customer> getAllCustomers() {
-        return dao.getAllCustomers();
+    public List<Customer> getAllCustomers()throws ServiceException  {
+        try {
+            return dao.getAllCustomers();
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
     }
 
-    public List<Customer> getCustomersFromCity(String city) {
-        return dao.getCustomersByCity(city);
+    public List<Customer> getCustomersFromCity(String city) throws ServiceException {
+        try {
+            return dao.getCustomersByCity(city);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
     }
 
-    public Customer getCustomerByEmailOrPhone(String emailOrPhone) {
-        return dao.getCustomerByEmailOrPhone(emailOrPhone);
+    public Customer getCustomerByEmailOrPhone(String emailOrPhone) throws ServiceException {
+        try {
+            return dao.getCustomerByEmailOrPhone(emailOrPhone);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
     }
 
-    public List<Customer> getCustomersByAge(int minAge, int maxAge) throws DaoException {
-        return dao.getCustomersByAge(minAge, maxAge);
+    public List<Customer> getCustomersByAge(int minAge, int maxAge) throws ServiceException  {
+        try {
+            return dao.getCustomersByAge(minAge, maxAge);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
     }
+
+    public void deleteCustomer(long id) throws ServiceException {
+        try{
+            dao.deleteCustomer(id);
+        }
+        catch (Exception e){
+            throw new ServiceException(e);
+        }
+    }
+
 }
