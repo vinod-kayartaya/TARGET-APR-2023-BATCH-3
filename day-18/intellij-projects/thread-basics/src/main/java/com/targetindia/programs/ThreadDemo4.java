@@ -11,7 +11,7 @@ public class ThreadDemo4 {
     static void convertToWords(List<String> words, String sentence) {
         for (String word : sentence.split("\s")) {
             words.add(word);
-            Thread.sleep(1); // the current thread will goto the BLOCKED/WAITING STATE
+            // Thread.sleep(1); // the current thread will goto the BLOCKED/WAITING STATE
             // and then it will goto the RUNNABLE state, waits for its turn to become RUNNING thread
         }
     }
