@@ -22,8 +22,9 @@ public class JdbcCustomerDao implements CustomerDao {
     @Override
     public void addCustomer(Customer c) throws DaoException {
         String sql = "insert into customers (first_name, last_name, email, phone, city, birth_date) values (?,?,?,?,?,?)";
-        try (Connection conn = this.createConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql);
+        try (
+                Connection conn = this.createConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
         ) {
             stmt.setString(1, c.getFirstname());
             stmt.setString(2, c.getLastname());
@@ -34,7 +35,7 @@ public class JdbcCustomerDao implements CustomerDao {
 
             stmt.executeUpdate();
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new DaoException(e);
         }
     }
@@ -42,8 +43,9 @@ public class JdbcCustomerDao implements CustomerDao {
     @Override
     public Customer findById(long id) throws DaoException {
         String sql = "select * from customers where id = ?";
-        try (Connection conn = this.createConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql);
+        try (
+                Connection conn = this.createConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
         ) {
             stmt.setLong(1, id);
             try (ResultSet rs = stmt.executeQuery()) {

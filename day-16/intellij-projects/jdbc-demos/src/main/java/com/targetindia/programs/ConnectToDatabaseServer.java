@@ -9,7 +9,7 @@ import java.sql.DriverManager;
 public class ConnectToDatabaseServer {
 
     public static void main(String[] args) {
-        String url = "jdbc:h2:tcp://localhost/~/targetdb_b3"; // defaults to port 3306
+        String url = "jdbc:mysql://localhost/targetdb_b3"; // defaults to port 3306
         String user = "root";
         String password = "Welcome#123";
 
