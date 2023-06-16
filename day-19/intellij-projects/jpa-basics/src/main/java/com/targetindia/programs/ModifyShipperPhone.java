@@ -13,8 +13,8 @@ public class ModifyShipperPhone {
         ) {
             int id = KeyboardUtil.getInt("Enter shipper id to search: ");
             Shipper s1 = em.find(Shipper.class, id); // here the data from the table is retrieved as an entity and
-            // kept in the em's cache. Since the data was retrieved by JPA, it is already a "persistent" object.
-            // any changes to a persistent object will automatically mark it as a "dirty" object
+            // kept in the em's cache. Since the data was retrieved by JPA, it is already a "managed" object.
+            // any changes to a managed object will automatically mark it as a "dirty" object
 
             String newPhone = KeyboardUtil.getString("Enter phone number: [" + s1.getPhone() + "] ");
             if (!newPhone.isBlank()) {
@@ -23,7 +23,7 @@ public class ModifyShipperPhone {
                 EntityTransaction tx = em.getTransaction();
                 tx.begin();
                 try {
-                    tx.commit(); // execute SQL UPDATE commands for each of the "dirty" persistent objects
+                    tx.commit(); // execute SQL UPDATE commands for each of the "dirty" managed objects
                     System.out.println("Phone number updated!");
                 } catch (Exception e) {
                     tx.rollback();

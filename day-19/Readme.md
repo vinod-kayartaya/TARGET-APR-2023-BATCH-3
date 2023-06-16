@@ -65,3 +65,5 @@
 ## JPA architecture
 
 ![](./jpa.dio.png)
+
+![](https://www.objectdb.com/get-file/e6ffbc62-8fb8-48ee-816b-44112b33e622/image.png)

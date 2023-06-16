@@ -10,9 +10,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class JdbcCustomerDao implements CustomerDao {
+    ResourceBundle rb = ResourceBundle.getBundle("jdbc-info");
+    
     @SneakyThrows
     private Connection createConnection() {
-        ResourceBundle rb = ResourceBundle.getBundle("jdbc-info");
         String url = rb.getString("jdbc.connection.url");
         String user = rb.getString("jdbc.connection.user");
         String password = rb.getString("jdbc.connection.password");

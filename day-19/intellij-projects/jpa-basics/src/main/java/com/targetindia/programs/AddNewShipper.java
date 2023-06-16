@@ -18,9 +18,9 @@ public class AddNewShipper {
             String name = KeyboardUtil.getString("Company name: ");
             String phone = KeyboardUtil.getString("Phone number: ");
 
-            // from JPA's perspective, this object is called "transient" object
+            // from JPA's perspective, this object is called "new/unmanaged" object
             Shipper s1 = new Shipper(id, name, phone);
-            em.persist(s1); // now, EntityManager manages the lifecycle object, and is called as "persistent" object
+            em.persist(s1); // now, EntityManager manages the lifecycle object, and is called as "managed" object
             // Yoy may think of em as a cache of entity objects, and in that cache, now we added "s1"
             // s1 is given a status of "new" (other than this, there may be "dirty" and "removed" objects in the cache)
 

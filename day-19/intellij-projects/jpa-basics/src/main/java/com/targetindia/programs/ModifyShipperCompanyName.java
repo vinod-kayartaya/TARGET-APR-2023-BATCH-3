@@ -12,7 +12,7 @@ public class ModifyShipperCompanyName {
         int id = KeyboardUtil.getInt("Enter shipper id search: ");
         Shipper s1 = getShipperById(id);
         // at this time, the "em" created in getShipperById() is closed, and s1
-        // is in the JVM, but not part of any entity manager. hence it is called "detached" object.
+        // is in the JVM, but not part of any entity manager. hence it is called "detached/unmanaged" object.
 
         String newCompanyName = KeyboardUtil.getString("Enter new company name: [" + s1.getCompanyName() + "] ");
         if(newCompanyName.isBlank()){
@@ -44,7 +44,7 @@ public class ModifyShipperCompanyName {
                 EntityManager em = JpaUtil.entityManager()
         ) {
             Shipper s1 = em.find(Shipper.class, id);
-            // at this time, s1 is part of the em's cache, and is called as "persistent" object
+            // at this time, s1 is part of the em's cache, and is called as "managed" object
             return s1;
         } // em.close() called here
     }
