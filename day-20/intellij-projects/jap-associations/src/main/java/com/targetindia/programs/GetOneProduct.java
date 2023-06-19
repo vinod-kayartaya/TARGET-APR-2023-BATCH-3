@@ -29,5 +29,9 @@ public class GetOneProduct {
         System.out.printf("Category      : %s (%s)%n",
                 p1.getCategory().getCategoryName(),
                 p1.getCategory().getDescription());
+        System.out.printf("Supplied by   : %s, %s %s%n",
+                p1.getSupplier().getCompanyName(),
+                p1.getSupplier().getAddress().getCity(),
+                p1.getSupplier().getAddress().getCountry());
     }
 }

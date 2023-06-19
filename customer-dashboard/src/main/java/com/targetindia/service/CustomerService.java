@@ -61,7 +61,7 @@ public class CustomerService {
         }
     }
 
-    public List<Customer> getAllCustomers()throws ServiceException  {
+    public List<Customer> getAllCustomers() throws ServiceException {
         try {
             return dao.getAllCustomers();
         } catch (DaoException e) {
@@ -85,7 +85,7 @@ public class CustomerService {
         }
     }
 
-    public List<Customer> getCustomersByAge(int minAge, int maxAge) throws ServiceException  {
+    public List<Customer> getCustomersByAge(int minAge, int maxAge) throws ServiceException {
         try {
             return dao.getCustomersByAge(minAge, maxAge);
         } catch (DaoException e) {
@@ -94,12 +94,18 @@ public class CustomerService {
     }
 
     public void deleteCustomer(long id) throws ServiceException {
-        try{
+        try {
             dao.deleteCustomer(id);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             throw new ServiceException(e);
         }
     }
 
+    public void updateCustomer(Customer c) throws ServiceException {
+        try {
+            dao.updateCustomer(c);
+        } catch (Exception e) {
+            throw new ServiceException(e);
+        }
+    }
 }

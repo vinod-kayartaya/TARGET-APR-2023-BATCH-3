@@ -8,11 +8,11 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "customers")
-public class Customer {
+@Table(name = "suppliers")
+public class Supplier {
     @Id
-    @Column(name="customer_id")
-    private String customerId;
+    @Column(name="supplier_id")
+    private Integer supplierId;
     @Column(name="company_name")
     private String companyName;
     @Column(name="contact_name")
@@ -27,8 +27,12 @@ public class Customer {
     private String phone;
     @Column
     private String fax;
+    @Column(name="home_page")
+    private String homepage;
 
+    // one supplier has supplied many products
     @OneToMany
-    @JoinColumn(name="customer_id")
-    private List<Order> orders;
+    @JoinColumn(name="supplier_id")
+    private List<Product> productList;
+
 }

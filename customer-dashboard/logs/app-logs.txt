@@ -60,3 +60,50 @@ com.targetindia.service.ServiceException: 1. Firstname is required, but missing
 	at com.targetindia.Main.acceptAndSaveCustomerData(Main.java:124)
 	at com.targetindia.Main.start(Main.java:33)
 	at com.targetindia.Main.main(Main.java:19)
+[ INFO] 2023-06-19 12:43:40,556 main            org.hibernate.jpa.internal.util.LogHelper [  31] HHH000204: Processing PersistenceUnitInfo [name: h2_targetdb_b3]
+[ INFO] 2023-06-19 12:43:40,716 main            org.hibernate.Version [  44] HHH000412: Hibernate ORM core version 6.2.4.Final
+[ INFO] 2023-06-19 12:43:40,721 main            org.hibernate.cfg.Environment [ 191] HHH000406: Using bytecode reflection optimizer
+[ WARN] 2023-06-19 12:43:41,500 main            org.hibernate.orm.connections.pooling [  80] HHH10001002: Using built-in connection pool (not intended for production use)
+[ INFO] 2023-06-19 12:43:41,506 main            org.hibernate.orm.connections.pooling [ 139] HHH10001005: Loaded JDBC driver class: org.h2.Driver
+[ INFO] 2023-06-19 12:43:41,507 main            org.hibernate.orm.connections.pooling [ 161] HHH10001012: Connecting with JDBC URL [jdbc:h2:tcp://localhost/~/targetdb_b3]
+[ INFO] 2023-06-19 12:43:41,508 main            org.hibernate.orm.connections.pooling [ 170] HHH10001001: Connection properties: {password=****, user=root}
+[ INFO] 2023-06-19 12:43:41,509 main            org.hibernate.orm.connections.pooling [ 174] HHH10001003: Autocommit mode: false
+[ INFO] 2023-06-19 12:43:41,519 main            org.hibernate.orm.connections.pooling [ 366] HHH10001115: Connection pool size: 20 (min=1)
+[ INFO] 2023-06-19 12:43:42,310 main            org.hibernate.bytecode.internal.BytecodeProviderInitiator [  53] HHH000021: Bytecode provider name : bytebuddy
+[ INFO] 2023-06-19 12:43:44,503 main            org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [  51] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[ WARN] 2023-06-19 12:44:43,075 main            com.targetindia.Main [ 164] Error while adding a new customer
+com.targetindia.service.ServiceException: com.targetindia.dao.DaoException: jakarta.persistence.NoResultException: No result found for query [from Customer where lower(email) = lower(?1) or phone=?1]
+	at com.targetindia.service.CustomerService.addCustomer(CustomerService.java:60)
+	at com.targetindia.Main.acceptAndSaveCustomerData(Main.java:161)
+	at com.targetindia.Main.start(Main.java:41)
+	at com.targetindia.Main.main(Main.java:18)
+Caused by: com.targetindia.dao.DaoException: jakarta.persistence.NoResultException: No result found for query [from Customer where lower(email) = lower(?1) or phone=?1]
+	at com.targetindia.dao.JpaCustomerDao.getCustomerByEmailOrPhone(JpaCustomerDao.java:105)
+	at com.targetindia.service.CustomerService.addCustomer(CustomerService.java:48)
+	... 3 more
+Caused by: jakarta.persistence.NoResultException: No result found for query [from Customer where lower(email) = lower(?1) or phone=?1]
+	at org.hibernate.query.spi.AbstractSelectionQuery.getSingleResult(AbstractSelectionQuery.java:476)
+	at com.targetindia.dao.JpaCustomerDao.getCustomerByEmailOrPhone(JpaCustomerDao.java:103)
+	... 4 more
+[ INFO] 2023-06-19 12:48:05,544 main            org.hibernate.jpa.internal.util.LogHelper [  31] HHH000204: Processing PersistenceUnitInfo [name: h2_targetdb_b3]
+[ INFO] 2023-06-19 12:48:05,800 main            org.hibernate.Version [  44] HHH000412: Hibernate ORM core version 6.2.4.Final
+[ INFO] 2023-06-19 12:48:05,807 main            org.hibernate.cfg.Environment [ 191] HHH000406: Using bytecode reflection optimizer
+[ WARN] 2023-06-19 12:48:07,008 main            org.hibernate.orm.connections.pooling [  80] HHH10001002: Using built-in connection pool (not intended for production use)
+[ INFO] 2023-06-19 12:48:07,015 main            org.hibernate.orm.connections.pooling [ 139] HHH10001005: Loaded JDBC driver class: org.h2.Driver
+[ INFO] 2023-06-19 12:48:07,016 main            org.hibernate.orm.connections.pooling [ 161] HHH10001012: Connecting with JDBC URL [jdbc:h2:tcp://localhost/~/targetdb_b3]
+[ INFO] 2023-06-19 12:48:07,017 main            org.hibernate.orm.connections.pooling [ 170] HHH10001001: Connection properties: {password=****, user=root}
+[ INFO] 2023-06-19 12:48:07,018 main            org.hibernate.orm.connections.pooling [ 174] HHH10001003: Autocommit mode: false
+[ INFO] 2023-06-19 12:48:07,040 main            org.hibernate.orm.connections.pooling [ 366] HHH10001115: Connection pool size: 20 (min=1)
+[ INFO] 2023-06-19 12:48:08,296 main            org.hibernate.bytecode.internal.BytecodeProviderInitiator [  53] HHH000021: Bytecode provider name : bytebuddy
+[ INFO] 2023-06-19 12:48:11,572 main            org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [  51] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[ INFO] 2023-06-19 12:59:26,717 main            org.hibernate.jpa.internal.util.LogHelper [  31] HHH000204: Processing PersistenceUnitInfo [name: h2_targetdb_b3]
+[ INFO] 2023-06-19 12:59:26,888 main            org.hibernate.Version [  44] HHH000412: Hibernate ORM core version 6.2.4.Final
+[ INFO] 2023-06-19 12:59:26,898 main            org.hibernate.cfg.Environment [ 191] HHH000406: Using bytecode reflection optimizer
+[ WARN] 2023-06-19 12:59:27,761 main            org.hibernate.orm.connections.pooling [  80] HHH10001002: Using built-in connection pool (not intended for production use)
+[ INFO] 2023-06-19 12:59:27,770 main            org.hibernate.orm.connections.pooling [ 139] HHH10001005: Loaded JDBC driver class: org.h2.Driver
+[ INFO] 2023-06-19 12:59:27,771 main            org.hibernate.orm.connections.pooling [ 161] HHH10001012: Connecting with JDBC URL [jdbc:h2:tcp://localhost/~/targetdb_b3]
+[ INFO] 2023-06-19 12:59:27,772 main            org.hibernate.orm.connections.pooling [ 170] HHH10001001: Connection properties: {password=****, user=root}
+[ INFO] 2023-06-19 12:59:27,772 main            org.hibernate.orm.connections.pooling [ 174] HHH10001003: Autocommit mode: false
+[ INFO] 2023-06-19 12:59:27,780 main            org.hibernate.orm.connections.pooling [ 366] HHH10001115: Connection pool size: 20 (min=1)
+[ INFO] 2023-06-19 12:59:28,601 main            org.hibernate.bytecode.internal.BytecodeProviderInitiator [  53] HHH000021: Bytecode provider name : bytebuddy
+[ INFO] 2023-06-19 12:59:30,926 main            org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [  51] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]

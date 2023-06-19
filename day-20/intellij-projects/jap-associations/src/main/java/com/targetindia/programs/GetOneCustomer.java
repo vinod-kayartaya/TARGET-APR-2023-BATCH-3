@@ -9,7 +9,7 @@ import jakarta.persistence.EntityManager;
 public class GetOneCustomer {
     public static void main(String[] args) {
 
-        String id = KeyboardUtil.getString("Enter supplier id to search: ");
+        String id = KeyboardUtil.getString("Enter customer id to search: ");
         try (EntityManager em = JpaUtil.entityManager()) {
             Customer c1 = em.find(Customer.class, id);
             if (c1 == null) {
@@ -24,6 +24,7 @@ public class GetOneCustomer {
             System.out.printf("Region            : %s%n", c1.getAddress().getRegion());
             System.out.printf("Country           : %s%n", c1.getAddress().getCountry());
 
+            c1.getOrders().forEach(GetOneOrder::printOrder);
         }
     }
 }

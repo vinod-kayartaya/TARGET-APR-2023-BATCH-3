@@ -1,17 +1,25 @@
 package com.targetindia.model;
 
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 
+@Entity
+@Table(name="customers")
 @Data
 public class Customer implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name="first_name")
     private String firstname;
+    @Column(name="last_name")
     private String lastname;
     private String email;
     private String phone;
+    @Column(name="birth_date")
     private Date birthDate;
     private String city;
 }

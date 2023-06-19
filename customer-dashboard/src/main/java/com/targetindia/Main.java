@@ -47,13 +47,58 @@ public class Main {
                     acceptAgeGroupAndShowCustomers();
                     break;
                 case 6:
-                    System.out.println("This feature is under development");
+                    acceptAndModifyCustomerData();
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
         }
         System.out.println("Thank you and have a nice day!");
+    }
+
+    private void acceptAndModifyCustomerData() {
+        try {
+            long id = KeyboardUtil.getLong("Enter customer id to search: ");
+            Customer c = service.getCustomer(id);
+            if (c == null) {
+                System.out.printf("No customer data found for id %d%n", id);
+                return;
+            }
+
+            String input;
+            System.out.println("Enter new value for the fields only if you wish to change: ");
+            input = KeyboardUtil.getString("Firstname    : [%s] ".formatted(c.getFirstname()));
+            if (!input.isBlank()) {
+                c.setFirstname(input);
+            }
+            input = KeyboardUtil.getString("Lastname      : [%s] ".formatted(c.getLastname()));
+            if (!input.isBlank()) {
+                c.setLastname(input);
+            }
+            input = KeyboardUtil.getString("Email         : [%s] ".formatted(c.getEmail()));
+            if (!input.isBlank()) {
+                c.setEmail(input);
+            }
+            input = KeyboardUtil.getString("Phone         : [%s] ".formatted(c.getPhone()));
+            if (!input.isBlank()) {
+                c.setPhone(input);
+            }
+            input = KeyboardUtil.getString("Date of birth : [%s] ".formatted(DateUtil.toString(c.getBirthDate())));
+            if (!input.isBlank()) {
+                c.setBirthDate(DateUtil.toDate(input));
+            }
+            input = KeyboardUtil.getString("City          : [%s] ".formatted(c.getCity()));
+            if (!input.isBlank()) {
+                c.setCity(input);
+            }
+
+            service.updateCustomer(c);
+            System.out.println("Customer data updated successfully!");
+
+        } catch (Exception e) {
+            log.warn("Error while calling acceptAndModifyCustomerData()", e);
+            System.out.println("Whoops! Something went wrong. Check the logs for details.");
+        }
     }
 
     private void acceptIdAndDeleteCustomer() {
