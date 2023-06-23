@@ -1,11 +1,14 @@
 package com.targetindia.dao;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+@Slf4j
 public class JdbcProductDao implements ProductDao {
 
     // dependency on a connection pool is expressed as a member variable
@@ -21,7 +24,8 @@ public class JdbcProductDao implements ProductDao {
 
     // writable property or mutator
     // can be used by spring to inject/wire dependency
-    public void setDataSource(DataSource dataSource) {
+    public void setDataSource(DataSource dataSource) { // property name is "connectionPool"
+        log.trace("JdbcProductDao.setDataSource called with an object {} class", dataSource.getClass().getName());
         this.dataSource = dataSource;
     }
 

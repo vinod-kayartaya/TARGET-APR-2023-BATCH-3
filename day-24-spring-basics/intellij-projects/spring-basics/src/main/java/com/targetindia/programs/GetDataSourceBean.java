@@ -40,5 +40,9 @@ public class GetDataSourceBean {
                     rs.getString(2),
                     rs.getString(3));
         }
+
+        rs.close();
+        stmt.close();
+        conn.close(); // connection is returned back to the pool
     }
 }
