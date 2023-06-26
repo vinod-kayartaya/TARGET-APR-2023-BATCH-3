@@ -35,7 +35,7 @@ public class AppConfig2 {
     }
 
     @Bean
-    public BasicDataSource dataSource(
+    public BasicDataSource basicDataSource(
             @Value("${jdbc.connection.driverClassName}") String driverClassName,
             @Value("${jdbc.connection.url}") String url,
             @Value("${jdbc.connection.username}") String username,

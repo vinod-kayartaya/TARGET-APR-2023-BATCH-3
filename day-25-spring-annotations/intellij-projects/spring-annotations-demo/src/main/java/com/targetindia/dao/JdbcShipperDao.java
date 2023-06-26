@@ -3,6 +3,7 @@ package com.targetindia.dao;
 import com.targetindia.entity.Shipper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -20,6 +21,7 @@ public class JdbcShipperDao implements ShipperDao {
     // the name "dataSource" or by type "javax.sql.DataSource", and injects the same to this reference.
     // The element (required=false) indicate that Spring should not throw an exception when there is no
     // qualifying bean in the container.
+    @Qualifier("basicDataSource")
     private DataSource dataSource;
 
     // default no arg constructor for good practice
@@ -31,6 +33,7 @@ public class JdbcShipperDao implements ShipperDao {
     public JdbcShipperDao(DataSource dataSource) {
         this.dataSource = dataSource;
     }
+
 
     // setter for any dependency injection
     // @Autowired
@@ -76,6 +79,7 @@ public class JdbcShipperDao implements ShipperDao {
 
     @Override
     public long count() throws DaoException {
+        log.trace("dataSource in JdbcShipperDao is of type {}", dataSource.getClass().getName());
         try (
                 Connection conn = dataSource.getConnection();
                 Statement stmt = conn.createStatement();
