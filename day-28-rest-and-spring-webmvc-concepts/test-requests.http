@@ -1,0 +1,145 @@
+# RFC 2616
+
+GET /api/contacts HTTP/1.1
+Host: localhost:8080
+Accept: application/json
+
+###
+
+GET /api/contacts HTTP/1.1
+Host: localhost:8080
+Accept: application/xml
+
+###
+
+GET /api/contacts HTTP/1.1
+Host: localhost:8080
+Accept: text/plain
+### the above results in response status 406
+
+GET /api/contacts/9905ef95-34f2-4dd6-8935-3320c1fd4a18
+Host: localhost:8080
+Accept: application/json
+###
+
+GET /api/contacts/9905ef95-34f2-4dd6-8935-3320c1fd4a18
+Host: localhost:8080
+Accept: application/xml
+###
+
+GET /api/contacts/9905ef95-34f2-4dd6-8935-3320c1fd4a18
+Host: localhost:8080
+Accept: text/plain
+
+###
+
+GET /api/contacts/9905ef95-34f2-4dd6-8935-3320c1fd0000
+Host: localhost:8080
+Accept: application/json
+### the above request is responded with 404, since the id is invalid
+
+POST /api/contacts
+Host: localhost:8080
+Accept: application/json
+Content-Type: application/json
+
+{
+    "firstname": "Vinod",
+    "email": "vinod@vinod.co",
+    "phone": "9731424784"
+}
+
+###
+PATCH /api/contacts/8b7637d8-f979-4599-9cc8-22de421be67e
+Host: localhost:8080
+Accept: application/xml
+Content-Type: application/xml
+
+<?xml version="1.0" ?>
+<contact>
+    <firstname>Vinod</firstname>
+    <lastname>Kumar</lastname>
+    <city>Bangalore</city>
+    <state>Karnataka</state>
+    <country>India</country>
+</contact>
+###
+PUT /api/contacts/4ac0183b-bbb5-4c4c-a40f-0972377550c7
+Host: localhost:8080
+Accept: application/xml
+Content-Type: application/xml
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contact>
+  <firstname>Vinod</firstname>
+  <lastname>Kumar</lastname>
+  <email>vinod@knowledgeworksindia.com</email>
+  <phone>9844083934</phone>
+  <city>Bengaluru</city>
+  <state>Karnataka</state>
+  <country>India</country>
+  <pincode>50078</pincode>
+  <picture>https://avatars.githubusercontent.com/u/109946821</picture>
+  <gender>Male</gender>
+  <address>Elegant Elite, 1st crs, 1st mn, ISRO lyt</address>
+</contact>
+
+###
+GET /api/contacts/8b7637d8-f979-4599-9cc8-22de421be67e
+Host: localhost:8080
+Accept: application/json
+
+###
+DELETE /api/contacts/8b7637d8-f979-4599-9cc8-22de421be67e
+Host: localhost:8080
+Accept: application/json
+
+###
+
+GET /api/contacts?state=Massachusetts
+Host: localhost:8080
+Accept: application/xml
+
+###
+
+GET /api/contacts?city=Bengaluru
+Host: localhost:8080
+Accept: application/json
+
+###
+
+PATCH /api/contacts/95c41e9e-9b7e-429d-ba4e-5e2e1a44044b
+Host: localhost:8080
+Accept: application/json
+Content-Type: application/json
+
+{
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "country": "India"
+}
+
+###
+GET /api/contacts?_page=2&_limit=5
+Host: localhost:8080
+Accept: application/json
+
+###
+
+GET /shipper-service/api/shippers
+Host: localhost:8080
+Accept: application/json
+
+###
+
+GET /shipper-service/api/shippers
+Host: localhost:8080
+Accept: application/xml
+
+###
+
+GET /shipper-service/api/shippers
+Host: localhost:8080
+Accept: text/html
+
+###
