@@ -1,0 +1,45 @@
+GET /api/products/info 
+Host: localhost:8080
+Accept: text/plain
+
+###
+GET /api/products/info 
+Host: localhost:8080
+Accept: application/json
+
+###
+GET /api/products/info 
+Host: localhost:8080
+Accept: application/xml
+
+###
+
+GET /api/products
+Host: localhost:8080
+Accept: application/json
+
+###
+
+
+GET /api/products
+Host: localhost:8080
+Accept: application/xml
+
+###
+
+
+
+GET /api/products/567
+Host: localhost:8080
+Accept: application/json
+
+###
+
+
+GET /api/products/456
+Host: localhost:8080
+Accept: application/xml
+
+###
+
+
