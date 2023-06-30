@@ -1,0 +1,147 @@
+GET /api/products/info 
+Host: localhost:8080
+Accept: text/plain
+
+###
+GET /api/products/info 
+Host: localhost:8080
+Accept: application/json
+
+###
+GET /api/products/info 
+Host: localhost:8080
+Accept: application/xml
+
+###
+
+GET /api/products
+Host: localhost:8080
+Accept: application/json
+
+###
+
+
+GET /api/products
+Host: localhost:8080
+Accept: application/xml
+
+###
+
+GET /api/products?page=3
+Host: localhost:8080
+Accept: application/json
+
+###
+
+
+GET /api/products?page=3&limit=5
+Host: localhost:8080
+Accept: application/xml
+
+###
+
+
+GET /api/products?limit=25
+Host: localhost:8080
+Accept: application/xml
+
+###
+
+
+GET /api/products/56
+Host: localhost:8080
+Accept: application/json
+
+###
+
+
+GET /api/products/45
+Host: localhost:8080
+Accept: application/xml
+
+###
+
+
+GET /api/products/search?fieldName=categoryId&fieldValue=5
+Host: localhost:8080
+Accept: application/xml
+
+###
+
+
+GET /api/products/search?fieldName=supplierId&fieldValue=3
+Host: localhost:8080
+Accept: application/xml
+
+###
+
+
+GET /api/products/search?fieldName=productName&fieldValue=cha
+Host: localhost:8080
+Accept: application/xml
+
+###
+
+GET /api/products/search?fieldName=discontinued&fieldValue=1
+Host: localhost:8080
+Accept: application/xml
+
+###
+
+GET /api/products/search?fieldName=unitsInStock&fieldValue=0
+Host: localhost:8080
+Accept: application/xml
+
+###
+
+
+GET /api/products/by-price-range?min=100&max=500
+Host: localhost:8080
+Accept: application/xml
+
+###
+
+
+GET /api/products/by-price-range?min=100
+Host: localhost:8080
+Accept: application/xml
+
+###
+
+
+GET /api/products/by-price-range?max=500
+Host: localhost:8080
+Accept: application/xml
+
+###
+
+POST /api/products
+Host: localhost:8080
+Accept: application/xml
+Content-Type: application/xml
+
+<?xml version="1.0" ?>
+<product>
+    <productName>Dark chocolate</productName>
+    <supplierId>1</supplierId>
+    <categoryId>3</categoryId>
+    <quantityPerUnit>50 bags</quantityPerUnit>
+    <unitPrice>200.79</unitPrice>
+    <unitsInStock>0</unitsInStock>
+    <unitsOnOrder>0</unitsOnOrder>
+    <reorderLevel>0</reorderLevel>
+    <discontinued>1</discontinued>
+</product>
+
+
+###
+
+GET /api/categories/3
+Host: localhost:9090
+Accept: application/json
+
+###
+
+GET /api/categories/3
+Host: localhost:9090
+Accept: application/xml

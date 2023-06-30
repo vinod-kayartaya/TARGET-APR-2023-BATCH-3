@@ -1,0 +1,4 @@
+service:
+  url:
+    category: http://localhost:7777/api/categories/
+    supplier: http://localhost:7070/api/suppliers/
