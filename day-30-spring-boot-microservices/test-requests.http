@@ -137,11 +137,11 @@ Content-Type: application/xml
 ###
 
 GET /api/categories/3
-Host: localhost:9090
+Host: localhost:7777
 Accept: application/json
 
 ###
 
 GET /api/categories/3
-Host: localhost:9090
+Host: localhost:7777
 Accept: application/xml

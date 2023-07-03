@@ -1,0 +1,60 @@
+get /api/categories/1
+host: localhost:7777
+accept: application/json
+
+###
+get /api/categories/2
+host: localhost:7777
+accept: application/xml
+
+###
+get /api/categories/12
+host: localhost:7777
+accept: application/json
+
+###
+get /api/categories/23
+host: localhost:7777
+accept: application/xml
+
+###
+get /api/products/1
+host: localhost:8080
+accept: application/json
+
+###
+get /api/products/2
+host: localhost:8080
+accept: application/xml
+
+###
+get /api/products/122
+host: localhost:8080
+accept: application/json
+
+###
+get /api/products/233
+host: localhost:8080
+accept: application/xml
+
+###
+get /api/products
+host: localhost:8080
+accept: application/json
+
+###
+get /api/products
+host: localhost:8080
+accept: application/xml
+
+###
+get /api/suppliers/12
+host: localhost:8888
+accept: application/json
+
+###
+get /api/suppliers/22
+host: localhost:8888
+accept: application/xml
+
+###
