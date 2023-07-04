@@ -1,0 +1,7 @@
+from openjdk:17-alpine
+
+workdir /vinod/workspace
+
+copy ./target/customers-service-0.0.1-SNAPSHOT.jar ./app.jar
+
+cmd ["java", "-jar", "./app.jar"]
